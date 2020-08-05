@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <!-- <link rel="stylesheet" href="./oece_style.css" /> -->
     <style type="text/css" media="screen">
       #editor {
         position: absolute;
@@ -54,68 +53,69 @@
           </li>
         </ul>
       </div>
-    </nav>
-
-    <!-- 
-    <div class="app_editor_wrapper">
-        <div id="editor" class="app_editor"></div>
-    </div> -->
-
-    <div class="container-fluid full-width">
+      <divstyle="background-color: rgb(52, 58, 64);">
         <div class="row">
-            <div class="col">
-            <h3>PROBLEM STATEMENT</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis ex aliquet, ultricies elit ac,
-                    ullamcorper enim. Aliquam erat volutpat. Vivamus in placerat erat. Nam ac vehicula justo. Curabitur eget commodo nisl. 
-                    Nam ac ornare dui, auctor dapibus tellus. Ut sollicitudin ornare nunc, at hendrerit dui rutrum eu. Lorem ipsum dolor sit amet
-                    , consectetur adipiscing elit. Aenean ultricies nulla eget libero ultrices, in lobortis est efficitur.
-            </p>
-            <p>
-                Vivamus fermentum nibh dapibus congue commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                Pellentesque blandit sit amet sem et congue. Aenean convallis tempor felis, elementum maximus purus ullamcorper quis. 
-                Quisque quis varius est, rhoncus tincidunt dui. Maecenas ornare mauris ut leo ullamcorper eleifend. Donec eget fermentum est.
-                Donec in convallis orci, in aliquet orci. Nunc sed scelerisque mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                Curabitur dapibus aliquet maximus. Praesent euismod ultricies dolor, sit amet gravida orci luctus imperdiet. Maecenas sed sagittis nisi.
-            </p>
-            <p>
-                Phasellus sit amet arcu commodo, facilisis mi in, egestas dolor. Fusce volutpat mauris vitae est posuere, in pretium diam posuere.
-                Fusce nec laoreet tortor. Nullam sollicitudin, sapien at pretium ultrices, orci libero condimentum lorem, hendrerit elementum nulla 
-                orci sit amet sapien. Vestibulum lobortis dignissim urna et dictum. Aliquam erat volutpat. Maecenas facilisis nisl leo, non facilisis turpis
-                vehicula at. Nam facilisis ultrices felis, nec finibus turpis egestas in. Praesent vitae varius ante, ac lacinia leo. Ut orci felis, 
-                condimentum nec tellus eget, iaculis aliquet urna
-            </p>
-            <p>
-                Curabitur non luctus est. Curabitur posuere velit ut lacus molestie fringilla. Proin quam enim, rutrum scelerisque malesuada id, 
-                vestibulum at nunc. Morbi sit amet leo elit. Aliquam volutpat pretium mauris. Pellentesque efficitur erat eu purus aliquam hendrerit. 
-                Donec commodo dolor vel mi pharetra, nec placerat arcu imperdiet. Etiam auctor diam a mollis lobortis. Vestibulum mi sem,
-                lobortis vitae augue in, fringilla elementum velit. Nulla facilisi. In maximus, urna eu aliquam vehicula, ex libero laoreet libero, 
-                eu cursus lacus libero eget sem. Ut facilisis, eros at posuere lacinia, nisl leo aliquet orci, ut feugiat ex lectus vitae ligula.
-            </p>
-            </div>
-            <div class="col">
-            <div id="editor"></div>
-            </div>
-            <div class="col">
-                <h3>OUTPUT</h3>
-                <textarea name="content" id="content" rows="20" style="width: 100%; display: block; resize: vertical;"></textarea>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid full-width" style="background-color: rgb(52, 58, 64);">
-        <div class="row" style="padding: 5px;">
-            <div class="col-sm-4">
+            <div class="col-md-3" style="float: right;">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Back</button>
             </div>
-            <div class="col-sm-4">
-                <button class="btn btn-primary btn-lg" type="submit" style="width: 48%;">Run</button>
-                <button class="btn btn-primary btn-lg" type="submit" style="width: 48%;">Reset</button>
+            <div class="col-md-3" style="float: right;">
+                <button onclick="download()" class="btn btn-primary btn-lg btn-block" type="button">Run</button>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-3" style="float: right;">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Reset</button>
+            </div>
+            <div class="col-md-3" style="float: right;">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Next</button>
             </div>
         </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid full-width">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>PROBLEM STATEMENT</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis ex aliquet, ultricies elit ac,
+                        ullamcorper enim. Aliquam erat volutpat. Vivamus in placerat erat. Nam ac vehicula justo. Curabitur eget commodo nisl. 
+                        Nam ac ornare dui, auctor dapibus tellus. Ut sollicitudin ornare nunc, at hendrerit dui rutrum eu. Lorem ipsum dolor sit amet
+                        , consectetur adipiscing elit. Aenean ultricies nulla eget libero ultrices, in lobortis est efficitur.
+                </p>
+                <p>
+                    Vivamus fermentum nibh dapibus congue commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+                    Pellentesque blandit sit amet sem et congue. Aenean convallis tempor felis, elementum maximus purus ullamcorper quis. 
+                    Quisque quis varius est, rhoncus tincidunt dui. Maecenas ornare mauris ut leo ullamcorper eleifend. Donec eget fermentum est.
+                    Donec in convallis orci, in aliquet orci. Nunc sed scelerisque mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+                    Curabitur dapibus aliquet maximus. Praesent euismod ultricies dolor, sit amet gravida orci luctus imperdiet. Maecenas sed sagittis nisi.
+                </p>
+                <p>
+                    Phasellus sit amet arcu commodo, facilisis mi in, egestas dolor. Fusce volutpat mauris vitae est posuere, in pretium diam posuere.
+                    Fusce nec laoreet tortor. Nullam sollicitudin, sapien at pretium ultrices, orci libero condimentum lorem, hendrerit elementum nulla 
+                    orci sit amet sapien. Vestibulum lobortis dignissim urna et dictum. Aliquam erat volutpat. Maecenas facilisis nisl leo, non facilisis turpis
+                    vehicula at. Nam facilisis ultrices felis, nec finibus turpis egestas in. Praesent vitae varius ante, ac lacinia leo. Ut orci felis, 
+                    condimentum nec tellus eget, iaculis aliquet urna
+                </p>
+                <p>
+                    Curabitur non luctus est. Curabitur posuere velit ut lacus molestie fringilla. Proin quam enim, rutrum scelerisque malesuada id, 
+                    vestibulum at nunc. Morbi sit amet leo elit. Aliquam volutpat pretium mauris. Pellentesque efficitur erat eu purus aliquam hendrerit. 
+                    Donec commodo dolor vel mi pharetra, nec placerat arcu imperdiet. Etiam auctor diam a mollis lobortis. Vestibulum mi sem,
+                    lobortis vitae augue in, fringilla elementum velit. Nulla facilisi. In maximus, urna eu aliquam vehicula, ex libero laoreet libero, 
+                    eu cursus lacus libero eget sem. Ut facilisis, eros at posuere lacinia, nisl leo aliquet orci, ut feugiat ex lectus vitae ligula.
+                </p>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12" id="editor"></div>
+                </div>
+            </div>      
+        </div>
     </div>
+
+    <div class="col-md-12" style="background-color: rgb(78, 77, 83); padding: 10px;">
+        <h3 style="color: snow;">OUTPUT</h3>
+        <textarea name="content" id="content" rows="5" style="width: 100%; display: block; resize: vertical; background-color: rgb(2, 20, 12); color: lime;"></textarea>
+    </div>  
+
+    
         
     <div class="jumbotron text-center" style="margin-bottom: 0;">
         <p>Footer</p>
@@ -130,7 +130,6 @@
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.session.setMode("ace/mode/python");
-        editor.setValue("print('Hello World!')");
         editor.setFontSize(15);
 
         // use setOptions method to set several options at once
@@ -149,7 +148,45 @@
             textarea.val(editor.getSession().getValue());
         });
         textarea.val(editor.getSession().getValue());
+        
+        /**
+         * Function to compile the code when the 'Run' button is clicked
+         **/ 
+        let filename = 'test.txt'        
+        
+        function download() {
+            // Data which will need to add in a file. 
+            var code = editor.getValue()
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
     </script>
   </body>
 </html>
 
+<!-- import numpy as np
+import random 
+import json
+
+A = []  # define a empty array 
+rows = random.randint(10, 20) 
+cols = random.randint(10, 20)
+for i in range(rows):
+    B = []
+    for j in range(cols):
+        B.append(i * random.randint(1, 10) + random.choice([-1, 1] * random.randint(1, 10)))
+    A.append(B)
+
+C = np.array(A)
+
+with open('result.json', 'w') as file:
+    json.dump(C, file, indent=4) -->
