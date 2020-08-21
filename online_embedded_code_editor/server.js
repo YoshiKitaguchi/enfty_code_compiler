@@ -11,17 +11,16 @@ app.get('/',(req, res) => {
     res.sendFile(__dirname + "/editor.html");
 });
 
-app.post('/compilecode' , function (req , res ) {
+app.post('/' , function (req , res ) {
     
 	var code = req.body.code;	
 	var input = req.body.input;
-    var inputRadio = req.body.inputRadio;
-    var lang = req.body.lang;
+    var lang = 'PYTHON';
 
-    console.log("hello: ", code)
-    console.log("input: ", input)
-    console.log("inputRadio: ", inputRadio)
-    console.log("lang: ", lang)
+    console.log('Compiling ...');
+    console.log("code: ", code);
+    console.log("input: ", input);
+    console.log("lang: ", lang);
 
     // https://github.com/tarungarg546/HackerEarth-node
 	var hackerEarth=require('hackerearth-node'); //require the Library
@@ -41,17 +40,24 @@ app.post('/compilecode' , function (req , res ) {
 	//compile your code 
 	hackerEarth.run(config,function(err,response){
 		if(err) {
-		//deal with error
-		console.log("error: ",err)
+		// With internal server error
+		return res.status(500).json({
+            message: 'Unable to process the request',
+            error: err
+        });
 		} else {
-        console.log("result: ", response.substring(response.search("output_html") + 15 , response.search("memory_limit") - 4));
-        var result = response.substring(response.search("output_html") + 15 , response.search("memory_limit") - 4);
-        res.send(html_text1 + result + html_text2);
-		}
-    }); 
-    
-    // res.send(html_text1 + code + html_text2);
+            var obj = JSON.parse(response);
+            console.log(obj);
+            var error = obj.run_status.stderr;
+            var output = obj.run_status.output;
 
+            // HTTP success status 
+            return res.status(200).json({
+                error: error,
+                output: output
+            });
+        }
+    }); 
 });
 
 app.get('/fullStat' , function(req , res ){
@@ -63,3 +69,5 @@ app.get('/fullStat' , function(req , res ){
 app.listen(PORT, () => {
     console.log("Server at => http://localhost:" + PORT);
 });
+
+module.exports = app;
