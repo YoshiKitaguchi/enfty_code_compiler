@@ -33,7 +33,7 @@ app.post('', (req , res ) => {
 	config.time_limit=1;  //your time limit in integer
 	config.memory_limit=323244;  //your memory limit in integer
 	config.source=code;  //your source code for which you want to use hackerEarth api
-	config.input='';  //input against which you have to test your source code
+	config.input=input;  //input against which you have to test your source code
 	config.language=lang; //optional choose any one of them or none
 
     var result = "";
