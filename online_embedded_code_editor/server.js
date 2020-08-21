@@ -4,19 +4,18 @@ const router = express.Router();
 const app = express();
 var PORT = 8888;
 
-app.use(bodyParser());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/editor.html");
 });
 
-app.post('/', (req , res ) => {
+app.post('', (req , res ) => {
     
-	var code = req.body.code;	
-	var input = req.body.run;
-    var lang = 'PYTHON';
+	var code = req.body.source;	
+	var input = req.body.input;
+    var lang = req.body.language;
 
     console.log('Compiling ...');
     console.log("code: ", code);
@@ -41,31 +40,33 @@ app.post('/', (req , res ) => {
 	//compile your code 
 	hackerEarth.run(config,function(err,response){
 		if(err) {
-		// With internal server error
-		return res.status(500).json({
-            message: 'Unable to process the request',
-            error: err
-        });
+		    // With internal server error
+            return res.status(500).json({
+                message: 'Unable to process the request',
+                error: err
+            });
 		} else {
             var obj = JSON.parse(response);
             console.log(obj);
             var error = obj.run_status.stderr;
             var output = obj.run_status.output;
 
+            res.end(JSON.stringify(obj.run_status.output));
+
             // HTTP success status 
-            return res.status(200).json({
-                error: error,
-                output: output
-            });
+            // return res.status(200).json({
+            //     error: error,
+            //     output: output
+            // });
         }
     }); 
 });
 
-app.get('/fullStat' , function(req , res ){
-    compiler.fullStat(function(data){
-        res.send(data);
-    });
-});
+// app.get('/fullStat' , function(req , res ){
+//     compiler.fullStat(function(data){
+//         res.send(JSON.stringify(data));
+//     });
+// });
 
 app.listen(PORT, () => {
     console.log("Server at => http://localhost:" + PORT);

@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     />
+    <!-- <link
+      rel="stylesheet"
+      href="oece_style.css"
+    /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -20,9 +24,108 @@
         bottom: 0;
         left: 0;
       }
+      *
+      {
+          margin: 0;
+          padding: 0;
+          font-family: consolas;
+      }
+      .wavy_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        min-height: 100vh;
+      }
+      .wavy {
+          background-color: #000000;
+          position: relative;
+          -webkit-box-reflect: below -12px linear-gradient(
+              transparent, rgba(0,0,0,0.35)  
+          );
+      }
+      .wavy span {
+          position: relative;
+          display: inline-block;
+          color: #fff;
+          font-size: 2em;
+          text-transform: uppercase;
+          animation: animate 1s ease-in-out infinite;
+          animation-delay: calc(0.1s * var(--i));
+      }
+      @keyframes animate 
+      {
+          0%
+          {
+              transform: translateY(0px);
+          }
+          20%
+          {
+              transform: translateY(-20px);
+          }
+          40%,100%
+          {
+              transform: translateY(0px);
+          }
+      }
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+      #scrollpath {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 100%;
+        background: rgba(255,255,255,0.05);
+      }
+      #progressbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 100%;
+        background: linear-gradient(to top, #008aff, #00ffe7);
+        animation: progressbar_animate 5s linear infinite;
+      }
+      @keyframes progressbar_animate 
+      {
+        0%, 100%
+        {
+          filter: hue-rotate(0deg);
+        }
+        50%
+        {
+          filter: hue-rotate(360deg);
+        }
+      }
+      #progressbar:before 
+      {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, #008aff, #00ffe7);
+        filter: blur(10px);
+      }
+      #progressbar:after 
+      {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, #008aff, #00ffe7);
+        filter: blur(30px);
+      }
     </style>
   </head>
   <body>
+    <div id="progressbar"></div>
+    <div id="scrollpath"></div>
     <div class="jumbotron text-center" style="margin: 0em;">
       <h1>
         <a style="color: red;">e</a>nfty - Basic Programming Course Structure
@@ -53,25 +156,31 @@
           </li>
         </ul>
       </div>
-      <divstyle="background-color: rgb(52, 58, 64);">
-        <div class="row">
-            <div class="col-md-3" style="float: right;">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Back</button>
-            </div>
-            <div class="col-md-3" style="float: right;">
-                <input type="submit" value="Run"  name="run" />
-            </div>
-            <div class="col-md-3" style="float: right;">
-                <button onclick="resetEditor()" class="btn btn-primary btn-lg btn-block" type="button">Reset</button>
-            </div>
-            <div class="col-md-3" style="float: right;">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Next</button>
-            </div>
-        </div>
-      </div>
+      
     </nav>
-
-    <div class="container-fluid full-width">
+    <div class="wavy_box">
+      <div class="wavy" >
+        <span style="--i:1;">V</span>
+        <span style="--i:2;">i</span>
+        <span style="--i:3;">d</span>
+        <span style="--i:4;">e</span>
+        <span style="--i:5;">o</span>
+        <span style="--i:6;"> </span>
+        <span style="--i:7;">T</span>
+        <span style="--i:8;">u</span>
+        <span style="--i:9;">t</span>
+        <span style="--i:10;">o</span>
+        <span style="--i:11;">r</span>
+        <span style="--i:12;">i</span>
+        <span style="--i:13;">a</span>
+        <span style="--i:14;">l</span>
+        <span style="--i:15;">.</span>
+        <span style="--i:16;">.</span>
+        <span style="--i:17;">.</span>
+      </div>
+    </div>
+  
+    <div class="container-fluid full width">
         <div class="row">
             <div class="col-md-4">
                 <h3>PROBLEM STATEMENT</h3>
@@ -110,22 +219,37 @@
         </div>
     </div>
 
-    <div class="=container-fluid full-width">
+    <div class="container-fluid full-width">
+      <div class="row" style="background-color: rgb(52, 58, 64);">
+          <div class="col-md-3" >
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Back</button>
+          </div>
+          <div class="col-md-3" >
+            <button onclick="sendCode()" class="btn btn-primary btn-lg btn-block" type="button">Run</button>
+          </div>
+          <div class="col-md-3" >
+              <button onclick="resetEditor()" class="btn btn-primary btn-lg btn-block" type="button">Reset</button>
+          </div>
+          <div class="col-md-3" >
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Next</button>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid full-width">
       <div class="row">
-        <div class="col-md-6" style="background-color: rgb(78, 77, 83); padding: 25px;">
+        <div class="col-md-6" style="background-color: rgb(78, 77, 83); padding: 10px;">
           <h3 style="color: snow;">INPUT</h3>
-          <textarea name="input" id="input" rows="10" style="width: 100%; display: block; resize: vertical; background-color: rgb(2, 20, 12); color: lime;"></textarea>
+          <textarea name="input" id="input" rows="15" style="width: 100%; display: block; resize: vertical; background-color: rgb(2, 20, 12); color: lime;"></textarea>
         </div>
     
-        <div class="col-md-6" style="background-color: rgb(78, 77, 83); padding: 25px;">
+        <div class="col-md-6" style="background-color: rgb(78, 77, 83); padding: 10px;">
             <h3 style="color: snow;">OUTPUT</h3>
-            <textarea name="output" id="output" rows="10" style="width: 100%; display: block; resize: vertical; background-color: rgb(2, 20, 12); color: lime;"></textarea>
+            <textarea name="output" id="output" rows="15" style="width: 100%; display: block; resize: vertical; background-color: rgb(2, 20, 12); color: lime;"></textarea>
         </div>
       </div>
     </div>
-     
-
-    
         
     <div class="jumbotron text-center" style="margin-bottom: 0;">
         <p>Footer</p>
@@ -183,48 +307,36 @@
         }
         */
 
-        function compileCode() {
-            // Get the code from the code editor 
-            var code = editor.getValue();
-            var lang = "PYTHON";
-            var outputTextarea = $('#output');
-            var input = $('#input').val;
-            
-            console.log("code: ", code)
-            console.log("input: ", input)
-            console.log("lang: ", lang)
-  
-            // https://github.com/tarungarg546/HackerEarth-node
-            var hackerEarth=require('hackerearth-node'); //require the Library
-            //Now set your application 
-            var hackerEarth=new hackerEarth(
-              '13a3dcad1ec898bce32526ff5d52c0b02f8cba71',  //Your Client Secret Key here this is mandatory
-              ''  //mode sync=1 or async(optional)=0 or null async is by default and preferred for nodeJS
-            );
+        function sendCode() {
+          var code = editor.getValue();
+          var lang = "PYTHON";
+          var inputs = $('textarea#input').val();
+          if (inputs === undefined) {
+            inputs = '';
+          };
 
-            var config={};
-            config.time_limit=5;  //your time limit in integer
-            config.memory_limit=323244;  //your memory limit in integer
-            config.source=code;  //your source code for which you want to use hackerEarth api
-            config.input=input;  //input against which you have to test your source code
-            config.language=lang; //optional choose any one of them or none
-  
-            var result = "";
-            //compile your code 
-            hackerEarth.run(config,function(err,response){
-              if(err) {
-              //deal with error
-              console.log("error: ",err)
-              } else {
-                  console.log("result: ", response.substring(response.search("output_html") + 15 , response.search("memory_limit") - 4));
-                  var result = response.substring(response.search("output_html") + 15 , response.search("memory_limit") - 4);
-              }
-              }); 
+          var data_set = {
+            source: code,
+            input: inputs,
+            language: lang
+          };
 
-            outputTextarea.val(result);
-            console.log(result);
+          $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            data: JSON.stringify(data_set),
+            contentType: 'application/json',
+            cache: false,
+            timeout: 5000,
+            url: '',
+            success: function(output, status, xhr) {
+              // success callback function
+              $('textarea#output').val(output);
+            }
+          }).done(function() {
+            alert('Compile complete');
+          });
         }
-
         
         /**
          * Function that operates onclick of the reset button 
@@ -234,10 +346,19 @@
         }
 
     </script>
+    <script type="text/javascript">
+      let progress = document.getElementById('progressbar');
+      let totalHeight = document.body.scrollHeight - window.innerHeight;
+      window.onscroll = function() {
+        let progressHeight = (window.pageYOffset / totalHeight) * 100;
+        progress.style.height = progressHeight + "%"
+      }
+    </script>
   </body>
 </html>
 
-<!-- import numpy as np
+<!-- 
+import numpy as np
 import random 
 import json
 
@@ -251,6 +372,7 @@ for i in range(rows):
     A.append(B)
 
 C = np.array(A)
-
+print(C)
 with open('result.json', 'w') as file:
-    json.dump(C, file, indent=4) -->
+    json.dump(C, file, indent=4) 
+  -->
