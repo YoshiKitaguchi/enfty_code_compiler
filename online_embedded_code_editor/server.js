@@ -4,17 +4,18 @@ const router = express.Router();
 const app = express();
 var PORT = 8888;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
-app.get('/',(req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + "/editor.html");
 });
 
-app.post('/' , function (req , res ) {
+app.post('/', (req , res ) => {
     
 	var code = req.body.code;	
-	var input = req.body.input;
+	var input = req.body.run;
     var lang = 'PYTHON';
 
     console.log('Compiling ...');
