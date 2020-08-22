@@ -274,6 +274,9 @@
         editor.resize();
         editor.setAutoScrollEditorIntoView(true);
 
+        // Make output textarea READ-ONLY
+        document.getElementById("output").readOnly = true;
+
         // This code enables the output window to show the code typed in the code editor simultaneously
         /*
         var textarea = $('#content');
