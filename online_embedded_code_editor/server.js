@@ -28,7 +28,8 @@ app.post('', (req , res ) => {
 	var hackerEarth=new hackerEarth(
 		'13a3dcad1ec898bce32526ff5d52c0b02f8cba71',  //Your Client Secret Key here this is mandatory
 		''  //mode sync=1 or async(optional)=0 or null async is by default and preferred for nodeJS
-	);
+    );
+    
 	var config={};
 	config.time_limit=1;  //your time limit in integer
 	config.memory_limit=323244;  //your memory limit in integer
@@ -38,7 +39,7 @@ app.post('', (req , res ) => {
 
     var result = "";
 	//compile your code 
-	hackerEarth.run(config,function(err,response){
+	hackerEarth.run(config, function(err,response){
 		if(err) {
 		    // With internal server error
             return res.status(500).json({
@@ -61,12 +62,6 @@ app.post('', (req , res ) => {
         }
     }); 
 });
-
-// app.get('/fullStat' , function(req , res ){
-//     compiler.fullStat(function(data){
-//         res.send(JSON.stringify(data));
-//     });
-// });
 
 app.listen(PORT, () => {
     console.log("Server at => http://localhost:" + PORT);
